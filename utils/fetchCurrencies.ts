@@ -7,3 +7,4 @@ export async function fetchCurrencies() {
   const data = await response.json();
   return data;
 }
+ 
