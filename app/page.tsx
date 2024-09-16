@@ -6,6 +6,7 @@ import { fetchCurrencies } from "@/utils/fetchCurrencies";
 
 import CurrencyTable from "@/components/currencyTable";
 import CalculatorSection from "@/components/calculatorSection";
+import Skeleton from "@/components/skeleton";
 
 export default function Home() {
   const [currencies, setCurrencies] = useState<Currency[]>([]);
@@ -29,7 +30,7 @@ export default function Home() {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Skeleton />;
   }
 
   if (error) {

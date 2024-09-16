@@ -10,8 +10,8 @@ type Props = {
 function CalculatorSection(props: Props) {
   const [amountFrom, setAmountFrom] = useState("");
   const [amountTo, setAmountTo] = useState("");
-  const [currencyFrom, setCurrencyFrom] = useState(props.currencies[0].code);
-  const [currencyTo, setCurrencyTo] = useState(props.currencies[1].code);
+  const [currencyFrom, setCurrencyFrom] = useState(props.currencies[0]?.code);
+  const [currencyTo, setCurrencyTo] = useState(props.currencies[1]?.code);
   const [whoChange, setWhoChange] = useState<"toChanged" | "fromChanged">(
     "fromChanged"
   );
