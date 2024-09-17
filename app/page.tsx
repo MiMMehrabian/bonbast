@@ -16,9 +16,6 @@ import { fetchCoins } from "@/utils/fetchCoins";
 import { FaFacebookF } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { AiOutlineDiscord, AiOutlineYoutube } from "react-icons/ai";
-import { Input, TextField } from "@mui/material";
-
-const ariaLabel = { "aria-label": "Email" };
 
 const Home: React.FC = () => {
   const [currencies, setCurrencies] = useState<Currency[]>([]);

@@ -18,15 +18,6 @@ import {
 type Props = {
   currencies: Currency[];
 };
-function createData(
-  name: string,
-  calories: number,
-  fat: number,
-  carbs: number,
-  protein: number
-) {
-  return { name, calories, fat, carbs, protein };
-}
 
 // CurrencyTable component to display a table of currencies
 const CurrencyTable: React.FC<Props> = ({ currencies }) => {
