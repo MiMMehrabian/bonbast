@@ -19,4 +19,5 @@ export interface Coins {
   coinName: string;
   type: string;
   price: number;
+  isBull: boolean;
 }

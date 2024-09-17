@@ -14,24 +14,28 @@ export async function GET() {
       coinName: "Gold",
       type: "Mesqal",
       price: faker.finance.amount({ min: 20000, max: 30000, dec: 0 }), // Random price within a specific range
+      isBull: faker.datatype.boolean(),
     },
     {
       id: generateUniqueId(),
       coinName: "Gold",
       type: "Ounce",
       price: faker.finance.amount({ min: 200000, max: 220000, dec: 0 }), // Random price within a specific range
+      isBull: faker.datatype.boolean(),
     },
     {
       id: generateUniqueId(),
       coinName: "Gold",
       type: "Geram",
       price: faker.finance.amount({ min: 200000, max: 220000, dec: 0 }), // Random price within a specific range
+      isBull: faker.datatype.boolean(),
     },
     {
       id: generateUniqueId(),
       coinName: "Bitcoin",
       type: "",
       price: faker.finance.amount({ min: 2000000, max: 2500000, dec: 0 }), // Random price within a specific range
+      isBull: faker.datatype.boolean(),
     },
   ];
 
