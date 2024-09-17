@@ -80,18 +80,20 @@ const Home: React.FC = () => {
   // Render main content
   return (
     <div className="container mx-auto p-6 md:p-10">
-      <div className="flex flex-col lg:flex-row">
+      <div className="flex flex-col lg:flex-row gap-10">
         <CurrencyTable currencies={currencies} />
         <div className="flex flex-col">
           <GoldsTable golds={golds} />
-          <div className="grid grid-cols-2 gap-3 px-4">
+          <div className="grid grid-cols-2 gap-3 mt-5">
             {coins.map((coin) => (
               <GoldPriceCard key={coin.id} coin={coin} />
             ))}
           </div>
         </div>
       </div>
-      <CalculatorSection currencies={currencies} />
+      <div className="grid md:grid-cols-2 grid-cols-1">
+        <CalculatorSection currencies={currencies} />
+      </div>
     </div>
   );
 };

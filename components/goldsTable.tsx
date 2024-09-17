@@ -2,6 +2,16 @@ import React from "react";
 
 import { Gold } from "@/types";
 import { FaCaretRight } from "react-icons/fa";
+import {
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  TableSortLabel,
+} from "@mui/material";
 
 type Props = {
   golds: Gold[];
@@ -10,70 +20,53 @@ type Props = {
 // GoldsTable component to display a table of golds
 const GoldsTable: React.FC<Props> = ({ golds }) => {
   return (
-    <section className="container mx-auto px-4 py-6">
-      {/* Table heading */}
-      <h2 className="text-2xl font-semibold text-gray-800 mb-6">Golds List</h2>
-
-      <div className="overflow-x-auto">
-        <table className="min-w-full bg-white border border-gray-300 shadow-md rounded-lg divide-y divide-gray-200">
-          <thead className="bg-gray-50">
-            <tr>
-              <th className="px-6 py-3 text-left text-sm font-medium text-gray-600">
-                Coins
-              </th>
-              <th className="px-6 py-3 text-left text-sm font-medium text-gray-600">
-                Sell Price
-              </th>
-              <th className="px-6 py-3 text-left text-sm font-medium text-gray-600">
-                Buy Price
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {/* Render rows for each gold */}
-            {golds.map((gold, index) => (
-              <tr
-                key={gold.type + `${index}`}
-                className={`transition-colors duration-300 ${
-                  index % 2 === 0 ? "bg-gray-50" : "bg-white"
-                } hover:bg-gray-100`}
-              >
-                {/* gold name */}
-                <td className="px-6 py-2 text-sm text-gray-800">
-                  <div className="flex whitespace-nowrap gap-x-2">{gold.type}</div>
-                </td>
-                {/* Buy price */}
-                <td className="px-6 py-2 text-sm text-gray-800">
-                  <div className="flex items-center">
-                    <FaCaretRight
-                      size={14}
-                      color={gold.isBull ? "#58dd68" : "red"}
-                    />
-                    <span className="ml-2">
-                      {Intl.NumberFormat().format(parseFloat(gold.price))}
-                    </span>
-                  </div>
-                </td>
-                {/* Sell price */}
-                <td className="px-6 py-2 text-sm text-gray-800">
-                  <div className="flex items-center">
-                    <FaCaretRight
-                      size={14}
-                      color={gold.isBull ? "#58dd68" : "red"}
-                    />
-                    <span className="ml-2">
-                      {Intl.NumberFormat().format(
-                        parseFloat(gold.price) - 100000
-                      )}
-                    </span>
-                  </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </section>
+    <TableContainer component={Paper}>
+      <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
+        <TableHead>
+          <TableRow>
+            <TableCell>Coins</TableCell>
+            <TableCell align="left">Sell Price</TableCell>
+            <TableCell align="left">Buy Price</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {golds.map((gold) => (
+            <TableRow
+              key={gold.type}
+              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+            >
+              <TableCell component="th" scope="row">
+                <div className="flex gap-x-2">{gold.type}</div>
+              </TableCell>
+              <TableCell align="left">
+                <div className="flex items-center">
+                  <FaCaretRight
+                    size={14}
+                    color={gold.isBull ? "#58dd68" : "red"}
+                  />
+                  <span className="ml-2">
+                    {Intl.NumberFormat().format(parseFloat(gold.price))}
+                  </span>
+                </div>
+              </TableCell>
+              <TableCell align="left">
+                <div className="flex items-center">
+                  <FaCaretRight
+                    size={14}
+                    color={gold.isBull ? "#58dd68" : "red"}
+                  />
+                  <span className="ml-2">
+                    {Intl.NumberFormat().format(
+                      parseFloat(parseFloat(gold.price).toFixed(0))
+                    )}
+                  </span>
+                </div>
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
 };
 

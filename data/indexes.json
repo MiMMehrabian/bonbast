@@ -1,0 +1,35 @@
+[
+    {
+      "id": "1",
+      "coinName": "Gold",
+      "type": "Mithql",
+      "unit":"Toman",
+      "price": "39000000",
+      "isBull": true
+    },
+    {
+      "id": "2",
+      "coinName":"Gold", 
+      "type": "Gram",
+      "unit":"Toman",
+      "price": "44100000",
+      "isBull": true
+    },
+    {
+      "id": "3",
+      "coinName":"Gold", 
+      "type": "Ounce",
+      "unit":"$",
+      "price": "23800000",
+      "isBull": false
+    },
+    {
+      "id": "4",
+      "coinName":"Bitcoin", 
+      "type": "",
+      "unit":"$",
+      "price": "59900",
+      "isBull": false
+    }
+  ]
+  

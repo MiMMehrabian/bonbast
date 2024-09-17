@@ -20,4 +20,5 @@ export interface Coins {
   type: string;
   price: number;
   isBull: boolean;
+  unit: string;
 }

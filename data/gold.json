@@ -1,0 +1,32 @@
+[
+  {
+    "id": "1",
+    "type":"Azadi", 
+    "price": "39000000",
+    "isBull": true
+  },
+  {
+    "id": "2",
+    "type":"Emami", 
+    "price": "44100000",
+    "isBull": true
+  },
+  {
+    "id": "3",
+    "type":"1/2 Azadi", 
+    "price": "23800000",
+    "isBull": false
+  },
+  {
+    "id": "4",
+    "type":"1/4 Azadi", 
+    "price": "15800000",
+    "isBull": false
+  },
+  {
+    "id": "5",
+    "type":"Gerami", 
+    "price": "7250000",
+    "isBull": false
+  }
+]

@@ -1,96 +1,96 @@
 import React from "react";
 
 import Flag from "react-world-flags";
+import Paper from "@mui/material/Paper";
 
 import { Currency } from "@/types";
 import { FaCaretRight } from "react-icons/fa";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  TableSortLabel,
+} from "@mui/material";
 
 type Props = {
   currencies: Currency[];
 };
+function createData(
+  name: string,
+  calories: number,
+  fat: number,
+  carbs: number,
+  protein: number
+) {
+  return { name, calories, fat, carbs, protein };
+}
 
 // CurrencyTable component to display a table of currencies
 const CurrencyTable: React.FC<Props> = ({ currencies }) => {
   return (
-    <section className="container mx-auto px-4 py-6">
-      {/* Table heading */}
-      <h2 className="text-2xl font-semibold text-gray-800 mb-6">
-        Currency List
-      </h2>
-
-      <div className="overflow-x-auto">
-        <table className="min-w-full bg-white border border-gray-300 shadow-md rounded-lg divide-y divide-gray-200">
-          <thead className="bg-gray-50">
-            <tr>
-              {/* Column headers */}
-              <th className="px-6 py-3 text-left text-sm font-medium text-gray-600">
-                Code
-              </th>
-              <th className="px-6 py-3 text-left text-sm font-medium text-gray-600">
-                Currency
-              </th>
-              <th className="px-6 py-3 text-left text-sm font-medium text-gray-600">
-                Sell Price
-              </th>
-              <th className="px-6 py-3 text-left text-sm font-medium text-gray-600">
-                Buy Price
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {/* Render rows for each currency */}
-            {currencies.map((currency, index) => (
-              <tr
-                key={currency.code + `${index}`}
-                className={`transition-colors duration-300 ${
-                  index % 2 === 0 ? "bg-gray-50" : "bg-white"
-                } hover:bg-gray-100`}
-              >
-                {/* Currency name */}
-                <td className="px-6 py-4 text-sm text-gray-800">
-                  <div className="flex gap-x-2">
-                    <Flag code={currency.countryCode} width={15} />
-                    {currency.name}
-                  </div>
-                </td>
-                {/* Currency code  */}
-                <td className="px-6 py-4 text-sm text-gray-700">
-                  <span className="inline px-2 py-1 text-sm font-medium text-gray-800">
-                    {currency.code}
+    <TableContainer component={Paper}>
+      <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
+        <TableHead>
+          <TableRow>
+            <TableCell>
+              <TableSortLabel>Code</TableSortLabel>
+            </TableCell>
+            <TableCell align="left">
+              <TableSortLabel>Currency</TableSortLabel>
+            </TableCell>
+            <TableCell align="left">
+              <TableSortLabel>Sell Price </TableSortLabel>
+            </TableCell>
+            <TableCell align="left">
+              <TableSortLabel>Buy Price</TableSortLabel>
+            </TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {currencies.map((currency) => (
+            <TableRow
+              key={currency.name}
+              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+            >
+              <TableCell component="th" scope="row">
+                <div className="flex gap-x-2">
+                  <Flag code={currency.countryCode} width={15} height={15} />
+                  {currency.code}
+                </div>
+              </TableCell>
+              <TableCell align="left">{currency.name}</TableCell>
+              <TableCell align="left">
+                <div className="flex items-center">
+                  <FaCaretRight
+                    size={14}
+                    color={currency.isBull ? "#58dd68" : "red"}
+                  />
+                  <span className="ml-2">
+                    {Intl.NumberFormat().format(parseFloat(currency.price))}
                   </span>
-                </td>
-                {/* Sell price */}
-                <td className="px-6 py-4 text-sm text-gray-800">
-                  <div className="flex items-center">
-                    <FaCaretRight
-                      size={14}
-                      color={currency.isBull ? "#58dd68" : "red"}
-                    />
-                    <span className="ml-2">
-                      {Intl.NumberFormat().format(parseFloat(currency.price))}
-                    </span>
-                  </div>
-                </td>
-                {/* Buy price, formatted */}
-                <td className="px-6 py-4 text-sm text-gray-800">
-                  <div className="flex items-center">
-                    <FaCaretRight
-                      size={14}
-                      color={currency.isBull ? "#58dd68" : "red"}
-                    />
-                    <span className="ml-2">
-                      {Intl.NumberFormat().format(
-                        parseFloat(parseFloat(currency.price).toFixed(0))
-                      )}
-                    </span>
-                  </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </section>
+                </div>
+              </TableCell>
+              <TableCell align="left">
+                <div className="flex items-center">
+                  <FaCaretRight
+                    size={14}
+                    color={currency.isBull ? "#58dd68" : "red"}
+                  />
+                  <span className="ml-2">
+                    {Intl.NumberFormat().format(
+                      parseFloat(parseFloat(currency.price).toFixed(0))
+                    )}
+                  </span>
+                </div>
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
 };
 

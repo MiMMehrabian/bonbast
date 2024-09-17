@@ -1,49 +1,23 @@
-import { faker } from "@faker-js/faker";
+import { NextResponse } from "next/server";
+import { readFileSync } from "fs";
+import { join } from "path";
 
-// Helper function to generate a unique ID for each item
-function generateUniqueId(): number {
-  return Math.floor(Math.random() * 1000); // Generate a random number as ID
-}
+// Path to your JSON file
+const filePath = join(process.cwd(), "data", "indexes.json");
 
-// Helper function to generate mock data for coin information
+// Handler function for the GET request
 export async function GET() {
-  // Define the list of items with predefined values
-  const items = [
-    {
-      id: generateUniqueId(),
-      coinName: "Gold",
-      type: "Mesqal",
-      price: faker.finance.amount({ min: 20000, max: 30000, dec: 0 }), // Random price within a specific range
-      isBull: faker.datatype.boolean(),
-    },
-    {
-      id: generateUniqueId(),
-      coinName: "Gold",
-      type: "Ounce",
-      price: faker.finance.amount({ min: 200000, max: 220000, dec: 0 }), // Random price within a specific range
-      isBull: faker.datatype.boolean(),
-    },
-    {
-      id: generateUniqueId(),
-      coinName: "Gold",
-      type: "Geram",
-      price: faker.finance.amount({ min: 200000, max: 220000, dec: 0 }), // Random price within a specific range
-      isBull: faker.datatype.boolean(),
-    },
-    {
-      id: generateUniqueId(),
-      coinName: "Bitcoin",
-      type: "",
-      price: faker.finance.amount({ min: 2000000, max: 2500000, dec: 0 }), // Random price within a specific range
-      isBull: faker.datatype.boolean(),
-    },
-  ];
+  try {
+    // Read the JSON file
+    const data = readFileSync(filePath, "utf8");
+    const currencies = JSON.parse(data);
 
-  // Return the list of items in JSON format
-  return new Response(JSON.stringify(items), {
-    status: 200,
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+    // Return the list of currencies in JSON format
+    return NextResponse.json(currencies);
+  } catch (error) {
+    return NextResponse.json(
+      { error: "Failed to fetch currency data" },
+      { status: 500 }
+    );
+  }
 }

@@ -9,7 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/cache": "^11.13.1",
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
     "@faker-js/faker": "^9.0.1",
+    "@mui/material": "^6.1.0",
+    "@mui/material-nextjs": "^6.1.0",
     "@types/react-world-flags": "^1.4.5",
     "daisyui": "^4.12.10",
     "next": "14.2.11",

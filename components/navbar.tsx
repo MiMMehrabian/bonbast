@@ -24,15 +24,12 @@ const Navbar: React.FC = () => {
 
         {/* Desktop Navigation Links */}
         <div className="hidden md:flex space-x-4">
-          {["Home", "Archive", "Graph", "API"].map((item) => (
-            <Link
-              key={item}
-              href={`/${item.toLowerCase()}`}
-              className="my-2 text-gray-700 transition-colors duration-300 transform hover:text-blue-500 dark:hover:text-blue-400"
-            >
-              {item}
-            </Link>
-          ))}
+          <Link
+            href={`/`}
+            className="my-2 text-gray-700 transition-colors duration-300 transform hover:text-blue-500 dark:hover:text-blue-400"
+          >
+            Login
+          </Link>
         </div>
 
         {/* Mobile Menu Button */}
@@ -61,16 +58,13 @@ const Navbar: React.FC = () => {
       >
         {isMenuOpen && (
           <div className="flex flex-col space-y-4">
-            {["Home", "Archive", "Graph", "API"].map((item) => (
-              <Link
-                key={item}
-                href={`/${item.toLowerCase()}`}
-                className="text-gray-700 transition-colors duration-300 transform hover:text-blue-500 dark:hover:text-blue-400"
-                onClick={() => setIsMenuOpen(false)} // Close the menu on item click
-              >
-                {item}
-              </Link>
-            ))}
+            <Link
+              href={`/`}
+              className="text-gray-700 transition-colors duration-300 transform hover:text-blue-500 dark:hover:text-blue-400"
+              onClick={() => setIsMenuOpen(false)} // Close the menu on item click
+            >
+              Login
+            </Link>
           </div>
         )}
       </div>

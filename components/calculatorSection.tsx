@@ -1,16 +1,15 @@
 "use client";
 import React, { useCallback, useEffect, useState } from "react";
-
 import { Currency } from "@/types";
-
 import { FaExchangeAlt } from "react-icons/fa";
+import FromModal from "./fromModal";
+import ToModal from "./toModal";
 
 type Props = {
   currencies: Currency[];
 };
 
 const CalculatorSection: React.FC<Props> = ({ currencies }) => {
-  // State variables for the amounts and selected currencies
   const [amountFrom, setAmountFrom] = useState<string>("1");
   const [amountTo, setAmountTo] = useState<string>("");
   const [currencyFrom, setCurrencyFrom] = useState<string>(
@@ -23,14 +22,19 @@ const CalculatorSection: React.FC<Props> = ({ currencies }) => {
     "fromChanged"
   );
 
-  // Function to find a currency by its code
   const getCurrency = useCallback(
     (code: string): Currency | undefined =>
       currencies.find((currency) => currency.code === code),
     [currencies]
   );
 
-  // Effect to initialize currency selection when currencies are updated
+  const [open, setOpen] = useState(false);
+  const [openTo, setOpenTo] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleOpenTo = () => setOpenTo(true);
+  const handleClose = () => setOpen(false);
+  const handleCloseTo = () => setOpenTo(false);
+
   useEffect(() => {
     if (currencies.length > 1) {
       setCurrencyFrom(currencies[0].code);
@@ -38,29 +42,24 @@ const CalculatorSection: React.FC<Props> = ({ currencies }) => {
     }
   }, [currencies]);
 
-  // Effect to handle currency conversion based on user input
   useEffect(() => {
     const fromCurrency = getCurrency(currencyFrom);
     const toCurrency = getCurrency(currencyTo);
 
-    // Validate if the selected currencies are valid
     if (!fromCurrency || !toCurrency) {
       return;
     }
 
-    // Function to convert currency amounts
     const convertCurrency = (
       amount: number,
       fromPrice: number,
       toPrice: number
     ) => (amount * fromPrice) / toPrice;
 
-    // Determine which field changed and perform conversion
     const amount = (
       whoChange === "fromChanged" ? amountFrom : amountTo
     ) as string;
 
-    // Validate the amount input
     if (isNaN(Number(amount)) || Number(amount) <= 0) {
       console.error("Invalid amount");
       return;
@@ -69,13 +68,11 @@ const CalculatorSection: React.FC<Props> = ({ currencies }) => {
     const fromPrice = parseFloat(fromCurrency.price);
     const toPrice = parseFloat(toCurrency.price);
 
-    // Perform the conversion based on which field changed
     const convertedAmount =
       whoChange === "fromChanged"
         ? convertCurrency(parseFloat(amount), fromPrice, toPrice)
         : convertCurrency(parseFloat(amount), toPrice, fromPrice);
 
-    // Update the state based on the changed field
     if (whoChange === "fromChanged") {
       setAmountTo(convertedAmount.toFixed(2));
     } else {
@@ -83,7 +80,6 @@ const CalculatorSection: React.FC<Props> = ({ currencies }) => {
     }
   }, [amountFrom, amountTo, currencyFrom, currencyTo, getCurrency, whoChange]);
 
-  // Handler function for input field changes
   const handleAmountChange =
     (
       setter: React.Dispatch<React.SetStateAction<string>>,
@@ -96,12 +92,25 @@ const CalculatorSection: React.FC<Props> = ({ currencies }) => {
 
   return (
     <div className="mt-10 w-full mx-auto">
+      <FromModal
+        currencies={currencies}
+        setCurrencyFrom={setCurrencyFrom}
+        open={open}
+        handleClose={handleClose}
+        currencyFrom={currencyFrom}
+      />
+      <ToModal
+        currencies={currencies}
+        currencyTo={currencyTo}
+        openTo={openTo}
+        handleClose={handleCloseTo}
+        setCurrencyTo={setCurrencyTo}
+      />
       <div className="rounded-2xl">
         <h1 className="bg-gray-100 py-2 px-5 rounded-t-2xl text-light-black-color">
           Currency Converter
         </h1>
         <div className="flex flex-col md:flex-row mt-5 gap-x-5 gap-y-5">
-          {/* Currency input and selection for the 'from' currency */}
           <div className="w-full flex justify-end">
             <div className="join w-full">
               <input
@@ -112,30 +121,21 @@ const CalculatorSection: React.FC<Props> = ({ currencies }) => {
                 className="input w-full input-bordered join-item bg-gray-100 hover:outline-none text-light-black-color focus-within:outline-none"
                 placeholder="Currency I have"
               />
-              <select
+              <button
                 value={currencyFrom}
-                onChange={(e) => setCurrencyFrom(e.target.value)}
-                className="select select-bordered join-item bg-gray-100 text-light-black-color hover:outline-none focus-within:outline-none"
+                onClick={handleOpen}
+                className=" join-item bg-gray-100 text-light-black-color flex justify-center place-items-center pr-3 hover:outline-none focus-within:outline-none"
               >
-                {currencies.map((currency, index) => (
-                  <option
-                    key={currency.code + `${index}`}
-                    value={currency.code}
-                  >
-                    {currency.code}
-                  </option>
-                ))}
-              </select>
+                <option value={currencyFrom}>{currencyFrom}</option>
+              </button>
             </div>
           </div>
-          {/* Currency exchange icon */}
           <div className="flex justify-center items-center">
             <FaExchangeAlt
               size={30}
               className="text-light-black-color rotate-90 md:rotate-0"
             />
           </div>
-          {/* Currency input and selection for the 'to' currency */}
           <div className="w-full flex justify-start">
             <div className="join w-full">
               <input
@@ -146,20 +146,13 @@ const CalculatorSection: React.FC<Props> = ({ currencies }) => {
                 className="input w-full input-bordered join-item bg-gray-100 hover:outline-none text-light-black-color focus-within:outline-none"
                 placeholder="Currency I want"
               />
-              <select
+              <button
                 value={currencyTo}
-                onChange={(e) => setCurrencyTo(e.target.value)}
-                className="select select-bordered join-item bg-gray-100 text-light-black-color hover:outline-none focus-within:outline-none"
+                onClick={handleOpenTo}
+                className=" join-item bg-gray-100 text-light-black-color flex justify-center place-items-center pr-3 hover:outline-none focus-within:outline-none"
               >
-                {currencies.map((currency, index) => (
-                  <option
-                    key={currency.code + `${index}`}
-                    value={currency.code}
-                  >
-                    {currency.code}
-                  </option>
-                ))}
-              </select>
+                <option value={currencyTo}>{currencyTo}</option>
+              </button>
             </div>
           </div>
         </div>
