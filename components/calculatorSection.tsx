@@ -1,6 +1,8 @@
 "use client";
 import React, { useCallback, useEffect, useState } from "react";
+
 import { Currency } from "@/types";
+
 import { FaExchangeAlt } from "react-icons/fa";
 
 type Props = {

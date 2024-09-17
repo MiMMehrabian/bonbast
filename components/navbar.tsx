@@ -1,6 +1,7 @@
 "use client";
-import Link from "next/link";
 import React, { useState } from "react";
+import Link from "next/link";
+
 import { IoCloseOutline } from "react-icons/io5";
 import { RxHamburgerMenu } from "react-icons/rx";
 
@@ -41,7 +42,11 @@ const Navbar: React.FC = () => {
             type="button"
             className="text-gray-500 hover:text-gray-600 focus:outline-none"
           >
-            {isMenuOpen ? <IoCloseOutline size={40} /> : <RxHamburgerMenu size={30} />}
+            {isMenuOpen ? (
+              <IoCloseOutline size={40} />
+            ) : (
+              <RxHamburgerMenu size={30} />
+            )}
           </button>
         </div>
       </div>

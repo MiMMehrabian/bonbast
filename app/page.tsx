@@ -1,10 +1,14 @@
 "use client";
 import { useEffect, useState } from "react";
+
 import { Currency } from "@/types";
+
 import { fetchCurrencies } from "@/utils/fetchCurrencies";
+
 import CurrencyTable from "@/components/currencyTable";
 import CalculatorSection from "@/components/calculatorSection";
 import Skeleton from "@/components/skeleton";
+import ErrorDisplay from "@/components/errorDisplay";
 
 const Home: React.FC = () => {
   const [currencies, setCurrencies] = useState<Currency[]>([]);
@@ -18,8 +22,7 @@ const Home: React.FC = () => {
         const data = await fetchCurrencies();
         setCurrencies(data);
       } catch (error) {
-        console.error("Failed to fetch currencies:", error);
-        setError("Something went wrong while fetching currencies.");
+        setError("OOPS! Something went wrong while fetching currencies.");
       } finally {
         setLoading(false);
       }
@@ -35,7 +38,7 @@ const Home: React.FC = () => {
 
   // Render error state
   if (error) {
-    return <div className="text-red-600">Error: {error}</div>;
+    return <ErrorDisplay error={error} />;
   }
 
   // Render main content

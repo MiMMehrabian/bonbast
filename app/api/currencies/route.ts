@@ -1,7 +1,6 @@
-// app/api/users/route.js
+import { faker } from "@faker-js/faker";
 
 import { Currency } from "@/types";
-import { faker } from "@faker-js/faker";
 
 // Handler function for the GET request
 export async function GET() {
