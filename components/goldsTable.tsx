@@ -1,33 +1,25 @@
 import React from "react";
 
-import Flag from "react-world-flags";
-
-import { Currency } from "@/types";
+import { Gold } from "@/types";
 import { FaCaretRight } from "react-icons/fa";
 
 type Props = {
-  currencies: Currency[];
+  golds: Gold[];
 };
 
-// CurrencyTable component to display a table of currencies
-const CurrencyTable: React.FC<Props> = ({ currencies }) => {
+// GoldsTable component to display a table of golds
+const GoldsTable: React.FC<Props> = ({ golds }) => {
   return (
     <section className="container mx-auto px-4 py-6">
       {/* Table heading */}
-      <h2 className="text-2xl font-semibold text-gray-800 mb-6">
-        Currency List
-      </h2>
+      <h2 className="text-2xl font-semibold text-gray-800 mb-6">Golds List</h2>
 
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white border border-gray-300 shadow-md rounded-lg divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
-              {/* Column headers */}
               <th className="px-6 py-3 text-left text-sm font-medium text-gray-600">
-                Code
-              </th>
-              <th className="px-6 py-3 text-left text-sm font-medium text-gray-600">
-                Currency
+                Coins
               </th>
               <th className="px-6 py-3 text-left text-sm font-medium text-gray-600">
                 Sell Price
@@ -38,49 +30,40 @@ const CurrencyTable: React.FC<Props> = ({ currencies }) => {
             </tr>
           </thead>
           <tbody>
-            {/* Render rows for each currency */}
-            {currencies.map((currency, index) => (
+            {/* Render rows for each gold */}
+            {golds.map((gold, index) => (
               <tr
-                key={currency.code + `${index}`}
+                key={gold.type + `${index}`}
                 className={`transition-colors duration-300 ${
                   index % 2 === 0 ? "bg-gray-50" : "bg-white"
                 } hover:bg-gray-100`}
               >
-                {/* Currency name */}
-                <td className="px-6 py-4 text-sm text-gray-800">
-                  <div className="flex gap-x-2">
-                    <Flag code={currency.countryCode} width={15} />
-                    {currency.name}
-                  </div>
+                {/* gold name */}
+                <td className="px-6 py-2 text-sm text-gray-800">
+                  <div className="flex whitespace-nowrap gap-x-2">{gold.type}</div>
                 </td>
-                {/* Currency code  */}
-                <td className="px-6 py-4 text-sm text-gray-700">
-                  <span className="inline px-2 py-1 text-sm font-medium text-gray-800">
-                    {currency.code}
-                  </span>
-                </td>
-                {/* Sell price */}
-                <td className="px-6 py-4 text-sm text-gray-800">
+                {/* Buy price */}
+                <td className="px-6 py-2 text-sm text-gray-800">
                   <div className="flex items-center">
                     <FaCaretRight
                       size={14}
-                      color={currency.isBull ? "#58dd68" : "red"}
+                      color={gold.isBull ? "#58dd68" : "red"}
                     />
                     <span className="ml-2">
-                      {Intl.NumberFormat().format(parseFloat(currency.price))}
+                      {Intl.NumberFormat().format(parseFloat(gold.price))}
                     </span>
                   </div>
                 </td>
-                {/* Buy price, formatted */}
-                <td className="px-6 py-4 text-sm text-gray-800">
+                {/* Sell price */}
+                <td className="px-6 py-2 text-sm text-gray-800">
                   <div className="flex items-center">
                     <FaCaretRight
                       size={14}
-                      color={currency.isBull ? "#58dd68" : "red"}
+                      color={gold.isBull ? "#58dd68" : "red"}
                     />
                     <span className="ml-2">
                       {Intl.NumberFormat().format(
-                        parseFloat(parseFloat(currency.price).toFixed(0))
+                        parseFloat(gold.price) - 100000
                       )}
                     </span>
                   </div>
@@ -94,4 +77,4 @@ const CurrencyTable: React.FC<Props> = ({ currencies }) => {
   );
 };
 
-export default CurrencyTable;
+export default GoldsTable;

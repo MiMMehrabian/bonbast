@@ -1,6 +1,6 @@
 import { faker } from "@faker-js/faker";
 
-// Mapping of gold types to names
+// Mapping of gold types
 const goldTypes: string[] = [
   "Azadi",
   "Emami",
@@ -16,17 +16,13 @@ function generateUniqueId(): string {
 
 // Handler function for the GET request
 export async function GET() {
-  // Generate a list of gold price objects with mock data
-  const goldPrices = Array.from({ length: 5 }, () => {
-    // Select a random gold type from the predefined list
-    const type = faker.helpers.arrayElement(goldTypes);
-
-    return {
-      id: generateUniqueId(), // Unique ID for each gold type
-      type, // Random gold type from the predefined list
-      price: faker.finance.amount({ min: 50, max: 5000, dec: 2 }), // Random gold price with two decimal places
-    };
-  });
+  // Generate a list of gold price objects with predefined gold types
+  const goldPrices = goldTypes.map((type) => ({
+    id: generateUniqueId(), // Unique ID for each gold type
+    type, // Use each gold type from the predefined list
+    price: faker.finance.amount({ min: 10000000, max: 50000000, dec: 0 }), // Random gold price
+    isBull: faker.datatype.boolean(), // Random boolean for market direction
+  }));
 
   // Return the list of gold prices in JSON format
   return new Response(JSON.stringify(goldPrices), {

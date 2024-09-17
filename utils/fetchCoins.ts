@@ -1,8 +1,9 @@
-export async function fetchGolds() {
-  const response = await fetch("/api/gold");
+export async function fetchCoins() {
+  const response = await fetch("/api/indexes");
   if (!response.ok) {
     throw new Error("Network response was not ok");
   }
   const data = await response.json();
   return data;
 }
+ 

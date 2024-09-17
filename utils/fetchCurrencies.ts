@@ -1,4 +1,3 @@
-// utils/fetchCurrencies.js
 export async function fetchCurrencies() {
   const response = await fetch("/api/currencies");
   if (!response.ok) {
