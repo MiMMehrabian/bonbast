@@ -21,11 +21,23 @@ const Skeleton: React.FC = () => {
   const lines = 7;
 
   return (
-    <section className="bg-white container md:px-4 mx-auto">
-      {/* Render multiple SkeletonLine components */}
-      {Array.from({ length: lines }).map((_, index) => (
-        <SkeletonLine key={index} count={4} />
-      ))}
+    <section className="container mx-auto p-10">
+      {/* Table heading */}
+      <h2 className="text-lg font-medium text-gray-800">Currency List</h2>
+
+      <div className="flex flex-col mt-6">
+        {/* Responsive container for the table */}
+        <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+          <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+            <div className="overflow-hidden border border-gray-200 md:rounded-lg">
+              {/* Render multiple SkeletonLine components */}
+              {Array.from({ length: lines }).map((_, index) => (
+                <SkeletonLine key={index} count={4} />
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   );
 };
