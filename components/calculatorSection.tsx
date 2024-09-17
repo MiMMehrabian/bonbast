@@ -106,6 +106,7 @@ const CalculatorSection: React.FC<Props> = ({ currencies }) => {
             <div className="join w-full">
               <input
                 type="text"
+                inputMode="numeric"
                 value={amountFrom}
                 onChange={handleAmountChange(setAmountFrom, "fromChanged")}
                 className="input w-full input-bordered join-item bg-gray-100 hover:outline-none text-light-black-color focus-within:outline-none"
@@ -139,6 +140,7 @@ const CalculatorSection: React.FC<Props> = ({ currencies }) => {
             <div className="join w-full">
               <input
                 type="text"
+                inputMode="numeric"
                 value={amountTo}
                 onChange={handleAmountChange(setAmountTo, "toChanged")}
                 className="input w-full input-bordered join-item bg-gray-100 hover:outline-none text-light-black-color focus-within:outline-none"
