@@ -78,5 +78,37 @@
     "price": "375480",
     "isBull": false,
     "countryCode": "NZ"
+  },
+  {
+    "id": "11",
+    "code": "HKD",
+    "name": "Hong Kong Dollar",
+    "price": "76130",
+    "isBull": true,
+    "countryCode": "HK"
+  },
+  {
+    "id": "12",
+    "code": "SGD",
+    "name": "Singapore Dollar",
+    "price": "434340",
+    "isBull": false,
+    "countryCode": "SG"
+  },
+  {
+    "id": "13",
+    "code": "KRW",
+    "name": "South Korean Won",
+    "price": "457",
+    "isBull": true,
+    "countryCode": "KR"
+  },
+  {
+    "id": "14",
+    "code": "INR",
+    "name": "Indian Rupee",
+    "price": "7150",
+    "isBull": false,
+    "countryCode": "IN"
   }
 ]
