@@ -59,18 +59,20 @@ const Navbar: React.FC = () => {
             : "max-h-0 opacity-0 -translate-y-full"
         }`}
       >
-        <div className="flex flex-col space-y-4">
-          {["Home", "Archive", "Graph", "API"].map((item) => (
-            <Link
-              key={item}
-              href={`/${item.toLowerCase()}`}
-              className="text-gray-700 transition-colors duration-300 transform hover:text-blue-500 dark:hover:text-blue-400"
-              onClick={() => setIsMenuOpen(false)} // Close the menu on item click
-            >
-              {item}
-            </Link>
-          ))}
-        </div>
+        {isMenuOpen && (
+          <div className="flex flex-col space-y-4">
+            {["Home", "Archive", "Graph", "API"].map((item) => (
+              <Link
+                key={item}
+                href={`/${item.toLowerCase()}`}
+                className="text-gray-700 transition-colors duration-300 transform hover:text-blue-500 dark:hover:text-blue-400"
+                onClick={() => setIsMenuOpen(false)} // Close the menu on item click
+              >
+                {item}
+              </Link>
+            ))}
+          </div>
+        )}
       </div>
     </nav>
   );
