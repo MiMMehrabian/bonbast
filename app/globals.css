@@ -6,3 +6,7 @@
 [data-theme] {
   background-color: #fff;
 }
+
+.css-1sj2jcg-MuiTabs-indicator {
+  height: 0 !important;
+}

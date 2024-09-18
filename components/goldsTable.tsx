@@ -3,7 +3,6 @@ import React from "react";
 import { Gold } from "@/types";
 import { FaCaretRight } from "react-icons/fa";
 import {
-  Paper,
   Table,
   TableBody,
   TableCell,
@@ -19,45 +18,51 @@ type Props = {
 // GoldsTable component to display a table of golds
 const GoldsTable: React.FC<Props> = ({ golds }) => {
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
-        <TableHead>
+    <TableContainer className="bg-gray-100 rounded-lg shadow-lg overflow-hidden">
+      <Table className="min-w-full" aria-label="a dense table">
+        <TableHead className="bg-gray-200 border-b border-gray-300">
           <TableRow>
-            <TableCell>Coins</TableCell>
-            <TableCell align="left">Sell Price</TableCell>
-            <TableCell align="left">Buy Price</TableCell>
+            <TableCell className="text-light-black-color !py-1">
+              <span className=" text-[12px] font-semibold">Coins</span>
+            </TableCell>
+            <TableCell className="text-light-black-color !py-1 text-[12px] font-semibold">
+              <span className=" text-[12px] font-semibold"> Sell Price</span>
+            </TableCell>
+            <TableCell className="text-light-black-color !py-1 text-[12px] font-semibold">
+              <span className=" text-[12px] font-semibold"> Buy Price</span>
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {golds.map((gold) => (
+          {golds.map((gold, index) => (
             <TableRow
               key={gold.type}
-              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              className={`transition-colors duration-300 ${
+                index % 2 === 0 ? "bg-gray-50" : "bg-white"
+              } hover:bg-gray-200`}
             >
-              <TableCell component="th" scope="row">
-                <div className="flex gap-x-2">{gold.type}</div>
+              <TableCell className="!py-2  text-gray-700 !text-sm !font-semibold">
+                <div className="flex items-center">{gold.type}</div>
               </TableCell>
-              <TableCell align="left">
+              <TableCell className="!py-2  text-gray-700 !text-sm !font-medium">
                 <div className="flex items-center">
                   <FaCaretRight
                     size={14}
-                    color={gold.isBull ? "#58dd68" : "red"}
+                    className={gold.isBull ? "text-green-600" : "text-red-600"}
                   />
                   <span className="ml-2">
                     {Intl.NumberFormat().format(parseFloat(gold.price))}
                   </span>
                 </div>
               </TableCell>
-              <TableCell align="left">
-                <div className="flex items-center">
+              <TableCell className="!py-2  text-gray-700 !text-sm !font-medium">
+                <div className="flex items-center   text-gray-700 !text-sm !font-medium">
                   <FaCaretRight
                     size={14}
-                    color={gold.isBull ? "#58dd68" : "red"}
+                    className={gold.isBull ? "text-green-600" : "text-red-600"}
                   />
                   <span className="ml-2">
-                    {Intl.NumberFormat().format(
-                      parseFloat(parseFloat(gold.price).toFixed(0))
-                    )}
+                    {Intl.NumberFormat().format(parseFloat(gold.price))}
                   </span>
                 </div>
               </TableCell>

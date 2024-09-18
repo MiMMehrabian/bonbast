@@ -34,10 +34,10 @@ const page = () => {
             display: "flex",
             flexDirection: "column",
             width: "100%",
-            gap: 2,
+            gap: 4,
           }}
         >
-          <FormControl>
+          <FormControl className="gap-y-1">
             <FormLabel htmlFor="email">Email</FormLabel>
             <TextField
               id="email"
@@ -54,7 +54,6 @@ const page = () => {
                 backgroundColor: "white", // Set background color to white
                 height: "2.5rem", // Set height
                 "& .MuiOutlinedInput-root": {
-                  height: "100%", // Ensure the input field matches the height
                   "& fieldset": {
                     borderColor: "gray", // Optional: Customize border color
                   },
@@ -94,7 +93,6 @@ const page = () => {
                 backgroundColor: "white", // Set background color to white
                 height: "2.5rem", // Set height
                 "& .MuiOutlinedInput-root": {
-                  height: "100%", // Ensure the input field matches the height
                   "& fieldset": {
                     borderColor: "gray", // Optional: Customize border color
                   },

@@ -1,12 +1,13 @@
 type Props = {
   currencies: Currency[];
+  loading: boolean;
 };
 import React, { useState, useEffect } from "react";
 import Flag from "react-world-flags";
-import Paper from "@mui/material/Paper";
 import { Currency } from "@/types";
 import { FaCaretRight } from "react-icons/fa";
 import {
+  Skeleton,
   Table,
   TableBody,
   TableCell,
@@ -18,7 +19,7 @@ import {
 
 type Order = "asc" | "desc";
 
-const CurrencyTable: React.FC<Props> = ({ currencies }) => {
+const CurrencyTable: React.FC<Props> = ({ currencies, loading }) => {
   const [order, setOrder] = useState<Order>("asc");
   const [orderBy, setOrderBy] = useState<keyof Currency>("code");
 
@@ -63,69 +64,114 @@ const CurrencyTable: React.FC<Props> = ({ currencies }) => {
   });
 
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
-        <TableHead>
+    <TableContainer className="bg-gray-100 rounded-lg shadow-lg overflow-hidden">
+      <Table className="min-w-full" aria-label="a dense table">
+        <TableHead className="bg-gray-200 border-b border-gray-300">
           <TableRow>
-            <TableCell>
+            <TableCell className="text-light-black-color font-semibold !py-1">
               <TableSortLabel
                 active={orderBy === "code"}
                 direction={orderBy === "code" ? order : "asc"}
                 onClick={() => handleRequestSort("code")}
+                className="text-light-black-color text-[12px] font-semibold"
               >
                 Code
               </TableSortLabel>
             </TableCell>
-            <TableCell align="left">
+            <TableCell className="text-light-black-color font-semibold !py-1">
               <TableSortLabel
                 active={orderBy === "name"}
                 direction={orderBy === "name" ? order : "asc"}
                 onClick={() => handleRequestSort("name")}
+                className="text-light-black-color text-[12px] font-semibold"
               >
                 Currency
               </TableSortLabel>
             </TableCell>
-            <TableCell align="left">Sell Price</TableCell>
-            <TableCell align="left">Buy Price</TableCell>
+            <TableCell className="!py-1">
+              <span className="text-light-black-color text-[12px] font-semibold">
+                Sell Price
+              </span>
+            </TableCell>
+            <TableCell className="!py-1">
+              <span className="text-light-black-color text-[12px] font-semibold">
+                Buy Price
+              </span>
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {sortedCurrencies.map((currency) => (
-            <TableRow
-              key={currency.name}
-              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">
-                <div className="flex gap-x-2">
-                  <Flag code={currency.countryCode} width={15} height={15} />
-                  {currency.code}
-                </div>
-              </TableCell>
-              <TableCell align="left">{currency.name}</TableCell>
-              <TableCell align="left">
-                <div className="flex items-center">
-                  <FaCaretRight
-                    size={14}
-                    color={currency.isBull ? "#58dd68" : "red"}
-                  />
-                  <span className="ml-2">
-                    {Intl.NumberFormat().format(parseFloat(currency.price))}
-                  </span>
-                </div>
-              </TableCell>
-              <TableCell align="left">
-                <div className="flex items-center">
-                  <FaCaretRight
-                    size={14}
-                    color={currency.isBull ? "#58dd68" : "red"}
-                  />
-                  <span className="ml-2">
-                    {Intl.NumberFormat().format(parseFloat(currency.price))}
-                  </span>
-                </div>
-              </TableCell>
-            </TableRow>
-          ))}
+          {loading
+            ? Array.from(new Array(10)).map((_, index) => (
+                <TableRow
+                  className={`transition-colors duration-300 ${
+                    index % 2 === 0 ? "bg-gray-50" : "bg-white"
+                  } hover:bg-gray-200`}
+                  key={index}
+                >
+                  <TableCell className="text-light-black-color font-semibold !py-2">
+                    <Skeleton variant="text" width="60%" />
+                  </TableCell>
+                  <TableCell className="text-light-black-color font-semibold !py-2">
+                    <Skeleton variant="text" width="80%" />
+                  </TableCell>
+                  <TableCell className="text-light-black-color font-semibold !py-2">
+                    <Skeleton variant="text" width="40%" />
+                  </TableCell>
+                  <TableCell className="text-light-black-color font-semibold !py-2">
+                    <Skeleton variant="text" width="40%" />
+                  </TableCell>
+                </TableRow>
+              ))
+            : sortedCurrencies.map((currency, index) => (
+                <TableRow
+                  key={currency.name}
+                  className={`transition-colors duration-300 ${
+                    index % 2 === 0 ? "bg-gray-50" : "bg-white"
+                  } hover:bg-gray-200`}
+                >
+                  <TableCell className="!py-2 text-gray-700">
+                    <div className="flex items-center text-sm font-semibold">
+                      <Flag
+                        code={currency.countryCode}
+                        width={15}
+                        height={15}
+                        className="mr-2"
+                      />
+                      {currency.code}
+                    </div>
+                  </TableCell>
+                  <TableCell className="!py-2 text-gray-700 !text-sm !font-medium">
+                    {currency.name}
+                  </TableCell>
+                  <TableCell className="!py-2 text-gray-700">
+                    <div className="flex items-center text-sm font-medium">
+                      <FaCaretRight
+                        size={14}
+                        className={
+                          currency.isBull ? "text-green-600" : "text-red-600"
+                        }
+                      />
+                      <span className="ml-2">
+                        {Intl.NumberFormat().format(parseFloat(currency.price))}
+                      </span>
+                    </div>
+                  </TableCell>
+                  <TableCell className="!py-2 text-gray-700">
+                    <div className="flex items-center font-medium">
+                      <FaCaretRight
+                        size={14}
+                        className={
+                          currency.isBull ? "text-green-600" : "text-red-600"
+                        }
+                      />
+                      <span className="ml-2">
+                        {Intl.NumberFormat().format(parseFloat(currency.price))}
+                      </span>
+                    </div>
+                  </TableCell>
+                </TableRow>
+              ))}
         </TableBody>
       </Table>
     </TableContainer>
