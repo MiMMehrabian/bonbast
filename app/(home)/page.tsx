@@ -16,7 +16,6 @@ import { FaFacebookF } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { AiOutlineDiscord, AiOutlineYoutube } from "react-icons/ai";
 import { styled, Tab, Tabs, TextField } from "@mui/material";
-import SkeletonLoading from "@/components/skeleton";
 interface StyledTabProps {
   label: string;
 }
