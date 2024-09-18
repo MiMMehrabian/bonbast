@@ -43,7 +43,7 @@ const FromModal: React.FC<Props> = ({
             >
               <ListItemButton className="gap-x-10">
                 <ListItemAvatar>
-                  <Flag code={currency.countryCode} width={15} height={15} />
+                  <Flag code={currency.countryCode} width={30} height={30} />
                 </ListItemAvatar>
                 <ListItemText primary={currency.name} />
                 <ListItemText className="text-right" primary={currency.price} />
