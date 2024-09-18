@@ -29,7 +29,7 @@ const FromModal: React.FC<Props> = ({
 }) => {
   return (
     <Dialog scroll="paper" onClose={handleClose} open={open}>
-      <DialogTitle>Set backup account</DialogTitle>
+      <DialogTitle>Select Base Currency</DialogTitle>
       <DialogContent style={{ maxHeight: "400px" }}>
         <List sx={{ pt: 0 }}>
           {currencies.map((currency) => (
