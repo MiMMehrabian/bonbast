@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
+import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
 
-import "../globals.css";
+import "./globals.css";
 // Metadata for the document, setting the title of the site
 export const metadata: Metadata = {
   title: "Bonbast Login",
@@ -12,5 +13,13 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  return (
+    <html lang="en">
+      <body>
+        <AppRouterCacheProvider options={{ key: "css" }}>
+          {children}
+        </AppRouterCacheProvider>
+      </body>
+    </html>
+  );
 }

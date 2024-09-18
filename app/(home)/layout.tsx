@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
 import Navbar from "@/components/navbar";
 
 import "../globals.css";
@@ -16,15 +15,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body>
-        <AppRouterCacheProvider options={{ key: "css" }}>
-          {/* Include the Navbar component */}
-          <Navbar />
-          {/* Render child components */}
-          {children}
-        </AppRouterCacheProvider>
-      </body>
-    </html>
+    <>
+      <Navbar />
+      {children}
+    </>
   );
 }
