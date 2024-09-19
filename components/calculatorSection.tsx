@@ -1,9 +1,10 @@
 "use client";
 import React, { useCallback, useEffect, useState } from "react";
 import { Currency } from "@/types";
-import { FaExchangeAlt } from "react-icons/fa";
 import FromModal from "./fromModal";
 import ToModal from "./toModal";
+import { Box, TextField, Button, Typography } from "@mui/material";
+import { TbExchange } from "react-icons/tb";
 
 type Props = {
   currencies: Currency[];
@@ -56,9 +57,7 @@ const CalculatorSection: React.FC<Props> = ({ currencies }) => {
       toPrice: number
     ) => (amount * fromPrice) / toPrice;
 
-    const amount = (
-      whoChange === "fromChanged" ? amountFrom : amountTo
-    ) as string;
+    const amount = whoChange === "fromChanged" ? amountFrom : amountTo;
 
     if (isNaN(Number(amount)) || Number(amount) <= 0) {
       console.error("Invalid amount");
@@ -91,7 +90,7 @@ const CalculatorSection: React.FC<Props> = ({ currencies }) => {
     };
 
   return (
-    <div className="mt-10 w-full mx-auto">
+    <Box sx={{ maxWidth: "100%" }}>
       <FromModal
         currencies={currencies}
         setCurrencyFrom={setCurrencyFrom}
@@ -106,58 +105,53 @@ const CalculatorSection: React.FC<Props> = ({ currencies }) => {
         handleClose={handleCloseTo}
         setCurrencyTo={setCurrencyTo}
       />
-      <div className="rounded-2xl">
-        <h1 className="bg-gray-100 py-2 px-5 rounded-t-2xl text-light-black-color">
+      <Box
+        sx={{
+          borderRadius: 2,
+          boxShadow: 1,
+          bgcolor: "background.paper",
+          p: 3,
+          width: "100%",
+        }}
+      >
+        <Typography variant="h6" sx={{ mb: 2, fontWeight: "bold" }}>
           Currency Converter
-        </h1>
-        <div className="flex flex-col md:flex-row mt-5 gap-x-5 gap-y-5">
-          <div className="w-full flex justify-end">
-            <div className="join w-full">
-              <input
-                type="text"
-                inputMode="numeric"
-                value={amountFrom}
-                onChange={handleAmountChange(setAmountFrom, "fromChanged")}
-                className="input w-full input-bordered join-item bg-gray-100 hover:outline-none text-light-black-color focus-within:outline-none"
-                placeholder="Currency I have"
-              />
-              <button
-                value={currencyFrom}
-                onClick={handleOpen}
-                className=" join-item bg-gray-100 text-light-black-color flex justify-center place-items-center pr-3 hover:outline-none focus-within:outline-none"
-              >
-                <option value={currencyFrom}>{currencyFrom}</option>
-              </button>
-            </div>
-          </div>
-          <div className="flex justify-center items-center">
-            <FaExchangeAlt
-              size={30}
-              className="text-light-black-color rotate-90 md:rotate-0"
+        </Typography>
+        <Box width={"100%"} display="flex" flexDirection="row" gap={2}>
+          <Box width={"100%"} display="flex" alignItems="center">
+            <TextField
+              variant="outlined"
+              type="text"
+              value={amountFrom}
+              onChange={handleAmountChange(setAmountFrom, "fromChanged")}
+              placeholder="Currency I have"
+              fullWidth
+              sx={{ mr: 1, width: "100%" }}
             />
-          </div>
-          <div className="w-full flex justify-start">
-            <div className="join w-full">
-              <input
-                type="text"
-                inputMode="numeric"
-                value={amountTo}
-                onChange={handleAmountChange(setAmountTo, "toChanged")}
-                className="input w-full input-bordered join-item bg-gray-100 hover:outline-none text-light-black-color focus-within:outline-none"
-                placeholder="Currency I want"
-              />
-              <button
-                value={currencyTo}
-                onClick={handleOpenTo}
-                className=" join-item bg-gray-100 text-light-black-color flex justify-center place-items-center pr-3 hover:outline-none focus-within:outline-none"
-              >
-                <option value={currencyTo}>{currencyTo}</option>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+            <Button onClick={handleOpen} variant="outlined">
+              {currencyFrom}
+            </Button>
+          </Box>
+          <Box display="flex" justifyContent="center" alignItems="center">
+            <TbExchange size={30} className="text-gray-700 rotate-45" />
+          </Box>
+          <Box width={"100%"} display="flex" alignItems="center">
+            <TextField
+              variant="outlined"
+              type="text"
+              value={amountTo}
+              onChange={handleAmountChange(setAmountTo, "toChanged")}
+              placeholder="Currency I want"
+              fullWidth
+              sx={{ mr: 1 }}
+            />
+            <Button onClick={handleOpenTo} variant="outlined">
+              {currencyTo}
+            </Button>
+          </Box>
+        </Box>
+      </Box>
+    </Box>
   );
 };
 

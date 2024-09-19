@@ -25,7 +25,7 @@ const Home: React.FC = () => {
   const [coins, setCoins] = useState<Coins[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>("");
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState(3);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
@@ -131,13 +131,11 @@ const Home: React.FC = () => {
           <AntTab label="Currency" />
           <AntTab label="Gold" />
           <AntTab label="Indexes" />
+          <AntTab label="Calculator" />
         </Tabs>
         {value === 0 && (
           <div className="flex flex-col gap-10 my-5">
             <CurrencyTable currencies={currencies} loading={loading} />
-            <div className="grid md:grid-cols-2 grid-cols-1">
-              <CalculatorSection currencies={currencies} />
-            </div>
           </div>
         )}
         {value === 1 && (
@@ -146,10 +144,15 @@ const Home: React.FC = () => {
           </div>
         )}
         {value === 2 && (
-          <div className="grid grid-cols-2 gap-3 mt-5">
+          <div className="grid grid-cols-2 gap-3 my-5">
             {coins.map((coin) => (
               <GoldPriceCard key={coin.id} coin={coin} />
             ))}
+          </div>
+        )}
+        {value === 3 && (
+          <div className="flex flex-col gap-10 my-5">
+            <CalculatorSection currencies={currencies} />
           </div>
         )}
       </div>

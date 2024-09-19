@@ -19,3 +19,34 @@
 .css-1o0kqxp-MuiInputBase-root-MuiOutlinedInput-root {
   border-radius: 10px !important;
 }
+
+/* styles/globals.css */
+
+/* Custom scrollbar for WebKit browsers */
+::-webkit-scrollbar {
+  width: 12px !important; /* Width of the scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1 !important; /* Background of the scrollbar track */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888 !important; /* Color of the scrollbar thumb */
+  border-radius: 6px !important; /* Roundness of the scrollbar thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a5a5a5 !important; /* Color of the scrollbar thumb on hover */
+}
+
+/* Custom scrollbar for Firefox */
+html {
+  scrollbar-width: thin !important; /* Thin scrollbar */
+  scrollbar-color: #cfcfcf #f1f1f1 !important; /* Thumb color and track color */
+}
+
+/* Smooth scrolling behavior */
+html {
+  scroll-behavior: smooth; /* Smooth scrolling behavior */
+}
