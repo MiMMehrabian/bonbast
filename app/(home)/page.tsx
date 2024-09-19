@@ -25,7 +25,7 @@ const Home: React.FC = () => {
   const [coins, setCoins] = useState<Coins[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>("");
-  const [value, setValue] = useState(9);
+  const [value, setValue] = useState(0);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
