@@ -128,7 +128,11 @@ const CalculatorSection: React.FC<Props> = ({ currencies }) => {
               fullWidth
               sx={{ mr: 1, width: "100%" }}
             />
-            <Button onClick={handleOpen} variant="outlined">
+            <Button
+              onClick={handleOpen}
+              variant="outlined"
+              className="!text-light-black-color !border-gray-300"
+            >
               {currencyFrom}
             </Button>
           </Box>
@@ -145,7 +149,11 @@ const CalculatorSection: React.FC<Props> = ({ currencies }) => {
               fullWidth
               sx={{ mr: 1 }}
             />
-            <Button onClick={handleOpenTo} variant="outlined">
+            <Button
+              onClick={handleOpenTo}
+              variant="outlined"
+              className="!text-light-black-color !border-gray-300"
+            >
               {currencyTo}
             </Button>
           </Box>
