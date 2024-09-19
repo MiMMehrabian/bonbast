@@ -9,6 +9,7 @@
 
 .css-1sj2jcg-MuiTabs-indicator {
   height: 0 !important;
+  background-color: inherit !important;
 }
 .css-1jk99ih-MuiInputBase-input-MuiOutlinedInput-input {
   padding: 8px !important;
@@ -20,33 +21,28 @@
   border-radius: 10px !important;
 }
 
-/* styles/globals.css */
-
-/* Custom scrollbar for WebKit browsers */
 ::-webkit-scrollbar {
-  width: 12px !important; /* Width of the scrollbar */
+  width: 12px !important;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1 !important; /* Background of the scrollbar track */
+  background: #f1f1f1 !important;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #888 !important; /* Color of the scrollbar thumb */
-  border-radius: 6px !important; /* Roundness of the scrollbar thumb */
+  background: #888 !important;
+  border-radius: 6px !important;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #a5a5a5 !important; /* Color of the scrollbar thumb on hover */
+  background: #a5a5a5 !important;
 }
 
-/* Custom scrollbar for Firefox */
 html {
-  scrollbar-width: thin !important; /* Thin scrollbar */
-  scrollbar-color: #cfcfcf #f1f1f1 !important; /* Thumb color and track color */
+  scrollbar-width: thin !important;
+  scrollbar-color: #cfcfcf #f1f1f1 !important;
 }
 
-/* Smooth scrolling behavior */
 html {
-  scroll-behavior: smooth; /* Smooth scrolling behavior */
+  scroll-behavior: smooth;
 }
