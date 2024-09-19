@@ -117,7 +117,7 @@ const CalculatorSection: React.FC<Props> = ({ currencies }) => {
         <Typography variant="h6" sx={{ mb: 2, fontWeight: "bold" }}>
           Currency Converter
         </Typography>
-        <Box width={"100%"} display="flex" flexDirection="row" gap={2}>
+        <Box width={"100%"} className="flex flex-col sm:flex-row" gap={2}>
           <Box width={"100%"} display="flex" alignItems="center">
             <TextField
               variant="outlined"
