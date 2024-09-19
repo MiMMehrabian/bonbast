@@ -12,13 +12,13 @@ import { fetchGolds } from "@/utils/fetchGolds";
 import GoldsTable from "@/components/goldsTable";
 import GoldPriceCard from "@/components/goldPriceCard";
 import { fetchCoins } from "@/utils/fetchCoins";
-import { FaFacebookF } from "react-icons/fa";
-import { FaXTwitter } from "react-icons/fa6";
-import { AiOutlineDiscord, AiOutlineYoutube } from "react-icons/ai";
-import { styled, Tab, Tabs, TextField } from "@mui/material";
+import { styled, Tab, Tabs } from "@mui/material";
+import Footer from "@/components/footer";
+
 interface StyledTabProps {
   label: string;
 }
+
 const Home: React.FC = () => {
   const [currencies, setCurrencies] = useState<Currency[]>([]);
   const [golds, setGolds] = useState<Gold[]>([]);
@@ -153,45 +153,7 @@ const Home: React.FC = () => {
           </div>
         )}
       </div>
-      <footer className="bg-inherit border-t-2 gap-y-5 p-10 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4">
-        <div>
-          <h1 className="text-4xl font-bold text-light-black-color">BonBast</h1>
-          <div className="flex gap-4 mt-5  place-items-center text-light-black-color">
-            <FaFacebookF size={22} />
-            <FaXTwitter size={22} />
-            <AiOutlineYoutube size={30} />
-            <AiOutlineDiscord size={30} />
-          </div>
-        </div>
-        <div className=" text-light-black-color">
-          <h1 className="text-xl">Support</h1>
-          <ul className="mt-5">
-            <li className="my-1">Contact Us</li>
-            <li className="my-1">FAQ</li>
-            <li className="my-1">About Us</li>
-          </ul>
-        </div>
-        <div className=" text-light-black-color">
-          <h1 className="text-xl">API</h1>
-          <ul className="mt-5">
-            <li className="my-1">API key</li>
-          </ul>
-        </div>
-        <div>
-          <h1 className="text-xl mb-5 text-light-black-color">Always be aware of up-to-date prices</h1>
-          <div className="flex justify-start place-items-center gap-x-5">
-            <TextField
-              variant="standard"
-              type="email"
-              label="email"
-              sx={{background:'#FCFDFE',}}
-            />
-            <button className="bg-gray-200 text-light-black-color rounded-xl p-3">
-              Subscribe
-            </button>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </>
   );
 };

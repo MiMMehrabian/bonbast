@@ -10,3 +10,12 @@
 .css-1sj2jcg-MuiTabs-indicator {
   height: 0 !important;
 }
+.css-1jk99ih-MuiInputBase-input-MuiOutlinedInput-input {
+  padding: 8px !important;
+  border-radius: 20px !important;
+  font-size: "5px";
+}
+
+.css-1o0kqxp-MuiInputBase-root-MuiOutlinedInput-root {
+  border-radius: 10px !important;
+}

@@ -131,7 +131,7 @@ const CurrencyTable: React.FC<Props> = ({ currencies, loading }) => {
                   } hover:bg-gray-200`}
                 >
                   <TableCell className="!py-2 text-gray-700">
-                    <div className="flex items-center text-sm font-semibold">
+                    <div className="flex items-center text-sm font-semibold whitespace-nowrap">
                       <Flag
                         code={currency.countryCode}
                         width={15}
@@ -141,7 +141,7 @@ const CurrencyTable: React.FC<Props> = ({ currencies, loading }) => {
                       {currency.code}
                     </div>
                   </TableCell>
-                  <TableCell className="!py-2 text-gray-700 !text-sm !font-medium">
+                  <TableCell className="!py-2 text-gray-700 !text-sm !font-medium whitespace-nowrap">
                     {currency.name}
                   </TableCell>
                   <TableCell className="!py-2 text-gray-700">

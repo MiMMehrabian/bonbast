@@ -42,7 +42,7 @@ const GoldsTable: React.FC<Props> = ({ golds }) => {
               } hover:bg-gray-200`}
             >
               <TableCell className="!py-2  text-gray-700 !text-sm !font-semibold">
-                <div className="flex items-center">{gold.type}</div>
+                <div className="flex items-center whitespace-nowrap">{gold.type}</div>
               </TableCell>
               <TableCell className="!py-2  text-gray-700 !text-sm !font-medium">
                 <div className="flex items-center">
