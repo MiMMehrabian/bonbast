@@ -7,7 +7,7 @@ import { FaXTwitter } from "react-icons/fa6";
 function Footer() {
   return (
     <footer className="bg-inherit footer-center border-t-2 gap-y-10 p-10 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4">
-      <div>
+      <div className="place-self-start">
         <h1 className="text-4xl font-bold text-light-black-color">BonBast</h1>
         <div className="flex gap-4 mt-5  place-items-center text-light-black-color">
           <FaFacebookF size={22} />
@@ -31,7 +31,7 @@ function Footer() {
         </ul>
       </div>
       <div className="self-start">
-        <h1 className="text-xl mb-5 text-light-black-color">
+        <h1 className="text-lg mb-5 text-light-black-color">
           Always be aware of up-to-date prices
         </h1>
         <div className="flex justify-center place-items-center gap-x-2">

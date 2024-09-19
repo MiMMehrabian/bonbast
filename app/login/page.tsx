@@ -44,8 +44,6 @@ const page = () => {
               type="email"
               name="email"
               placeholder="your@email.com"
-              autoComplete="email"
-              autoFocus
               required
               fullWidth
               variant="outlined"
@@ -83,7 +81,6 @@ const page = () => {
               placeholder="••••••"
               type="password"
               id="password"
-              autoComplete="off" // Disable autocomplete
               autoFocus
               required
               fullWidth
@@ -121,12 +118,12 @@ const page = () => {
             fullWidth
             variant="contained"
             sx={{
-              backgroundColor: "black", // Set background color to black
-              color: "white", // Set text color to white
+              backgroundColor: "#e5e7eb",
+              color: "black",
               borderRadius: "10px",
               "&:hover": {
-                backgroundColor: "rgba(0, 0, 0, 0.8)", // Change to a lighter black on hover
-                transition: "background-color 0.3s ease", // Smooth transition
+                backgroundColor: "#eee",
+                transition: "background-color 0.3s ease",
               },
             }}
           >
