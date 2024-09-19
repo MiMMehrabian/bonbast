@@ -86,7 +86,7 @@ const Footer = () => {
       <Divider sx={{ height: "2px", backgroundColor: "#EFF2F5", mb: 2 }} />
       <Box
         sx={{
-          padding: "40px 0",
+          padding: "30px 0",
           backgroundColor: "#FCFDFE",
           color: "white",
           textAlign: "center",
@@ -146,51 +146,31 @@ const Footer = () => {
           <li style={{ display: "inline-block", padding: "0 10px" }}>
             <Link
               href="#"
-             className="!text-light-black-color"
+              className="!text-light-black-color"
               underline="none"
               sx={{ opacity: 0.8 }}
             >
-              Site Home
+              API
             </Link>
           </li>
           <li style={{ display: "inline-block", padding: "0 10px" }}>
             <Link
               href="#"
-             className="!text-light-black-color"
+              className="!text-light-black-color"
               underline="none"
               sx={{ opacity: 0.8 }}
             >
-              Playground
+              Conract Us
             </Link>
           </li>
           <li style={{ display: "inline-block", padding: "0 10px" }}>
             <Link
               href="#"
-             className="!text-light-black-color"
+              className="!text-light-black-color"
               underline="none"
               sx={{ opacity: 0.8 }}
             >
-              About
-            </Link>
-          </li>
-          <li style={{ display: "inline-block", padding: "0 10px" }}>
-            <Link
-              href="#"
-             className="!text-light-black-color"
-              underline="none"
-              sx={{ opacity: 0.8 }}
-            >
-              Sitemap
-            </Link>
-          </li>
-          <li style={{ display: "inline-block", padding: "0 10px" }}>
-            <Link
-              href="#"
-             className="!text-light-black-color"
-              underline="none"
-              sx={{ opacity: 0.8 }}
-            >
-              Contents
+              About Us
             </Link>
           </li>
         </ul>
